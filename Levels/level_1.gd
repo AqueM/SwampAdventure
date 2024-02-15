@@ -33,7 +33,6 @@ func update_prompt(prompt, state):
 		prompt_node.stop()
 		
 func hide_prompt_on_press(prompt, input):
-	var prompt_node = get_node(str(tutorials + "/" + prompt))
 	if Input.is_action_just_pressed(str(input)):
 		update_prompt(prompt, false)
 

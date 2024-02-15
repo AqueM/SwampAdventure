@@ -13,6 +13,6 @@ func _process(delta):
 
 func _on_body_entered(body):
 	if body is Player:
-		$AnimatedSprite2D.play("death")
-		await $AnimatedSprite2D.animation_finished
+		body.die()
+		$CollisionShape2D.disabled = true
 		

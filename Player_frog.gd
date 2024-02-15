@@ -38,7 +38,7 @@ func _physics_process(delta):
 		croak(croak_input)
 		
 	move_and_slide()
-	update_animations(can_move)
+	update_animations()
 
 func get_gravity() -> float:
 	return jump_gravity if velocity.y < 0.0 else fall_gravity
@@ -74,13 +74,24 @@ func move(moving_input):
 func croak(croak_input):
 	#play croak sound
 	if croak_input:
-		can_move = false
-		velocity.x = 0.0
+		stop_moving()
 		$AnimatedSprite2D.play("croak")
 		await $AnimatedSprite2D.animation_finished
 		can_move = true
 	
-func update_animations(can_move):
+func die():
+	print("dying")
+	stop_moving()
+	$AnimatedSprite2D.play("death")
+	await $AnimatedSprite2D.animation_finished
+	$CollisionShape2D.set_deferred("disabled", true)
+	#get_tree().reload_current_scene()	
+	
+func stop_moving():
+	can_move = false
+	velocity.x = 0.0
+	
+func update_animations():
 	if can_move:
 		if is_on_floor():
 			if velocity.x == 0.0:

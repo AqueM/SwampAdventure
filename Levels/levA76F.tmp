@@ -38,6 +38,11 @@ offset_bottom = 432.0
 
 [node name="Player_frog" parent="." instance=ExtResource("2_vtkih")]
 position = Vector2(112, 268)
+move_speed = 100.0
+air_jumps_total = 0
+jump_height = 100.0
+jump_time_to_peak = 0.5
+jump_time_to_descent = 0.3
 
 [node name="Keybinds" parent="Player_frog" instance=ExtResource("4_6r1oc")]
 

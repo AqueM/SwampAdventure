@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://4nw8u0mxyiqx"]
+
+[ext_resource type="Theme" uid="uid://du4hahjpytee8" path="res://default.tres" id="1_t2qx7"]
+[ext_resource type="Script" path="res://esc_button.gd" id="2_2wyll"]
+
+[node name="EscButton" type="Button"]
+offset_right = 48.0
+offset_bottom = 24.0
+theme = ExtResource("1_t2qx7")
+text = "< ESC
+"
+script = ExtResource("2_2wyll")

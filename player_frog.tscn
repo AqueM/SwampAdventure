@@ -1,8 +1,9 @@
-[gd_scene load_steps=61 format=3 uid="uid://chuoj2iq823lr"]
+[gd_scene load_steps=62 format=3 uid="uid://chuoj2iq823lr"]
 
 [ext_resource type="Script" path="res://Player_frog.gd" id="1_8f7pw"]
 [ext_resource type="Texture2D" uid="uid://brrfd0lxv5krf" path="res://Assets/Sprites/froglet_frog_green_sheet_all.png" id="2_uua8c"]
 [ext_resource type="AudioStream" uid="uid://c0gpppcb2l1ee" path="res://Assets/cartoon-jump-6462.mp3" id="3_hpv32"]
+[ext_resource type="PackedScene" uid="uid://4nw8u0mxyiqx" path="res://esc_button.tscn" id="4_p8q62"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hiuob"]
 atlas = ExtResource("2_uua8c")
@@ -301,7 +302,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4snst")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -447,7 +448,9 @@ script = ExtResource("1_8f7pw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qhq4j")
-animation = &"idle"
+animation = &"death"
+frame = 11
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
@@ -469,3 +472,11 @@ position = Vector2(0, 4)
 stream = ExtResource("3_hpv32")
 volume_db = -10.0
 bus = &"SFX"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="EscButton" parent="CanvasLayer" instance=ExtResource("4_p8q62")]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 56.0
+offset_bottom = 32.0
