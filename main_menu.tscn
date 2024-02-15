@@ -154,7 +154,10 @@ Universal UI/Menu Soundpack by Ellr,
 [url]https://ellr.itch.io/[/url]
 
 Cartoon Jump SFX from PixBay, 
-[url]https://pixabay.com/sound-effects/cartoon-jump-6462/[/url]"
+[url]https://pixabay.com/sound-effects/cartoon-jump-6462/[/url]
+
+Audune Prompts by Audune Games,
+[url]https://audune.itch.io/[/url]"
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/Credits/VBoxContainerCredits"]
 layout_mode = 2

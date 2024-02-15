@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmtq6cvsetp6e"]
+
+[ext_resource type="Script" path="res://fall_zone.gd" id="1_8xphg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wbyjs"]
+size = Vector2(650, 42)
+
+[node name="FallZone" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_8xphg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(328, 24)
+shape = SubResource("RectangleShape2D_wbyjs")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
