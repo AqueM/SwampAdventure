@@ -131,98 +131,29 @@ theme_override_constants/margin_top = 45
 theme_override_constants/margin_right = 115
 theme_override_constants/margin_bottom = 35
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3"]
 layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Credits" type="RichTextLabel" parent="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("2_50cfq")
-theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "\"Doobly Doo\" and \"Blippy Trance\" by Kevin MacLeod ([url]incompetech.com[/url])
 Licensed under Creative Commons:
-By Attribution 4.0 License [url]http://creativecommons.org/licenses/by/4.0/[/url]"
+By Attribution 4.0 License [url]http://creativecommons.org/licenses/by/4.0/[/url]
 
-[node name="Credits2" type="RichTextLabel" parent="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("2_50cfq")
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "Froglet character sprite by LukasLundin, 
-[url]https://lukaslundin.itch.io/[/url]"
+Froglet character sprite by LukasLundin, 
+[url]https://lukaslundin.itch.io/[/url]
 
-[node name="Credits3" type="RichTextLabel" parent="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("2_50cfq")
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "Peaceful nightfield spritesheet by Trixie, 
-[url]https://trixelized.itch.io/[/url]"
+Peaceful nightfield spritesheet by Trixie, 
+[url]https://trixelized.itch.io/[/url]
 
-[node name="Credits4" type="RichTextLabel" parent="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("2_50cfq")
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "Parallax Forest background by ansimuz, 
-[url]https://ansimuz.itch.io/[/url]"
+Parallax Forest background by ansimuz, 
+[url]https://ansimuz.itch.io/[/url]
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
+Pixelme Font, Pixel Art GUI Elements by Mounir Tohami, 
+[url]https://mounirtohami.itch.io/[/url]
 
-[node name="Credits5" type="RichTextLabel" parent="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("2_50cfq")
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "Pixelme Font, Pixel Art GUI Elements by Mounir Tohami, 
-[url]https://mounirtohami.itch.io/[/url]"
+Universal UI/Menu Soundpack by Ellr, 
+[url]https://ellr.itch.io/[/url]
 
-[node name="Credits6" type="RichTextLabel" parent="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("2_50cfq")
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "Universal UI/Menu Soundpack by Ellr, 
-[url]https://ellr.itch.io/[/url]"
-
-[node name="Credits7" type="RichTextLabel" parent="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("2_50cfq")
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "Cartoon Jump SFX from PixBay, 
-[url]https://pixabay.com/sound-effects/cartoon-jump-6462/[/url]"
-
-[node name="Credits8" type="RichTextLabel" parent="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("2_50cfq")
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "Cartoon Jump SFX from PixBay, 
-[url]https://pixabay.com/sound-effects/cartoon-jump-6462/[/url]"
-
-[node name="Credits9" type="RichTextLabel" parent="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("2_50cfq")
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "Cartoon Jump SFX from PixBay, 
+Cartoon Jump SFX from PixBay, 
 [url]https://pixabay.com/sound-effects/cartoon-jump-6462/[/url]"
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/Credits/VBoxContainerCredits"]
@@ -282,13 +213,5 @@ bus = &"SFX"
 [connection signal="pressed" from="MarginContainer/Title/MenuButtons/MarginContainer/StartBtn" to="." method="_on_start_btn_pressed"]
 [connection signal="pressed" from="MarginContainer/Title/MenuButtons/MarginContainer2/CreditsBtn" to="." method="_on_credits_btn_pressed"]
 [connection signal="pressed" from="MarginContainer/Title/MenuButtons/MarginContainer3/ExitBtn" to="." method="_on_exit_btn_pressed"]
-[connection signal="meta_clicked" from="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer/Credits" to="." method="_on_credits_meta_clicked"]
-[connection signal="meta_clicked" from="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer/Credits2" to="." method="_on_credits_meta_clicked"]
-[connection signal="meta_clicked" from="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer/Credits3" to="." method="_on_credits_meta_clicked"]
-[connection signal="meta_clicked" from="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer/Credits4" to="." method="_on_credits_meta_clicked"]
-[connection signal="meta_clicked" from="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer2/Credits5" to="." method="_on_credits_meta_clicked"]
-[connection signal="meta_clicked" from="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer2/Credits6" to="." method="_on_credits_meta_clicked"]
-[connection signal="meta_clicked" from="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer2/Credits7" to="." method="_on_credits_meta_clicked"]
-[connection signal="meta_clicked" from="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer2/Credits8" to="." method="_on_credits_meta_clicked"]
-[connection signal="meta_clicked" from="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer2/Credits9" to="." method="_on_credits_meta_clicked"]
+[connection signal="meta_clicked" from="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/RichTextLabel" to="." method="_on_credits_meta_clicked"]
 [connection signal="pressed" from="MarginContainer/Credits/VBoxContainerCredits/MarginContainer2/BackBtn" to="." method="_on_back_btn_pressed"]
