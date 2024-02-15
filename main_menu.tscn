@@ -1,0 +1,294 @@
+[gd_scene load_steps=8 format=3 uid="uid://bp6rumle0o16c"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_v7kcp"]
+[ext_resource type="Theme" uid="uid://du4hahjpytee8" path="res://default.tres" id="2_50cfq"]
+[ext_resource type="AudioStream" uid="uid://d235w7r0ujrou" path="res://Assets/Blippy Trance.mp3" id="3_7u0x2"]
+[ext_resource type="Texture2D" uid="uid://b0kgfgevqjdea" path="res://Assets/Background/parallax-forest-lights.png" id="4_ehqvf"]
+[ext_resource type="Texture2D" uid="uid://bmemcl3fj0pfc" path="res://Assets/Background/parallax-forest-middle-trees.png" id="4_te7h4"]
+[ext_resource type="Texture2D" uid="uid://cv5fyokkct2m4" path="res://Assets/Background/parallax-forest-front-trees.png" id="6_bekgw"]
+[ext_resource type="AudioStream" uid="uid://dw0o1bdnojyb4" path="res://Assets/Wood Block3.mp3" id="7_d6del"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_v7kcp")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 20
+metadata/_edit_lock_ = true
+
+[node name="Title" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+metadata/_edit_lock_ = true
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/Title"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_50cfq")
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_shadow_color = Color(0, 0.321569, 0, 1)
+theme_override_constants/shadow_outline_size = 10
+text = "Swamp Adventure"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="MenuButtons" type="VBoxContainer" parent="MarginContainer/Title"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Title/MenuButtons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 450
+theme_override_constants/margin_right = 450
+
+[node name="StartBtn" type="Button" parent="MarginContainer/Title/MenuButtons/MarginContainer"]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_50cfq")
+text = "START"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/Title/MenuButtons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 450
+theme_override_constants/margin_right = 450
+
+[node name="CreditsBtn" type="Button" parent="MarginContainer/Title/MenuButtons/MarginContainer2"]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_50cfq")
+text = "CREDITS"
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/Title/MenuButtons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 450
+theme_override_constants/margin_right = 450
+
+[node name="ExitBtn" type="Button" parent="MarginContainer/Title/MenuButtons/MarginContainer3"]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_50cfq")
+text = "QUIT"
+
+[node name="AuthorLabel" type="Label" parent="MarginContainer/Title"]
+layout_mode = 2
+theme = ExtResource("2_50cfq")
+theme_override_font_sizes/font_size = 15
+text = "Made by Dorota \"Aque\" Roskowska"
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="Credits" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/Credits"]
+layout_mode = 2
+offset_left = -10.0
+offset_top = -20.0
+offset_right = 1270.0
+offset_bottom = 700.0
+size_flags_vertical = 3
+theme_override_constants/margin_left = 110
+theme_override_constants/margin_top = 110
+theme_override_constants/margin_right = 110
+theme_override_constants/margin_bottom = 100
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/Credits/MarginContainer3"]
+layout_mode = 2
+color = Color(0, 0.0901961, 0.117647, 0.639216)
+
+[node name="VBoxContainerCredits" type="VBoxContainer" parent="MarginContainer/Credits"]
+layout_mode = 2
+offset_right = 1260.0
+offset_bottom = 680.0
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="MarginContainer/Credits/VBoxContainerCredits"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("2_50cfq")
+theme_type_variation = &"HeaderLarge"
+text = "Assets used in game
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/Credits/VBoxContainerCredits"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 115
+theme_override_constants/margin_top = 45
+theme_override_constants/margin_right = 115
+theme_override_constants/margin_bottom = 35
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Credits" type="RichTextLabel" parent="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_50cfq")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "\"Doobly Doo\" and \"Blippy Trance\" by Kevin MacLeod ([url]incompetech.com[/url])
+Licensed under Creative Commons:
+By Attribution 4.0 License [url]http://creativecommons.org/licenses/by/4.0/[/url]"
+
+[node name="Credits2" type="RichTextLabel" parent="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_50cfq")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Froglet character sprite by LukasLundin, 
+[url]https://lukaslundin.itch.io/[/url]"
+
+[node name="Credits3" type="RichTextLabel" parent="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_50cfq")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Peaceful nightfield spritesheet by Trixie, 
+[url]https://trixelized.itch.io/[/url]"
+
+[node name="Credits4" type="RichTextLabel" parent="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_50cfq")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Parallax Forest background by ansimuz, 
+[url]https://ansimuz.itch.io/[/url]"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Credits5" type="RichTextLabel" parent="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_50cfq")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Pixelme Font, Pixel Art GUI Elements by Mounir Tohami, 
+[url]https://mounirtohami.itch.io/[/url]"
+
+[node name="Credits6" type="RichTextLabel" parent="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_50cfq")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Universal UI/Menu Soundpack by Ellr, 
+[url]https://ellr.itch.io/[/url]"
+
+[node name="Credits7" type="RichTextLabel" parent="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_50cfq")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Cartoon Jump SFX from PixBay, 
+[url]https://pixabay.com/sound-effects/cartoon-jump-6462/[/url]"
+
+[node name="Credits8" type="RichTextLabel" parent="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_50cfq")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Cartoon Jump SFX from PixBay, 
+[url]https://pixabay.com/sound-effects/cartoon-jump-6462/[/url]"
+
+[node name="Credits9" type="RichTextLabel" parent="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_50cfq")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Cartoon Jump SFX from PixBay, 
+[url]https://pixabay.com/sound-effects/cartoon-jump-6462/[/url]"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/Credits/VBoxContainerCredits"]
+layout_mode = 2
+theme_override_constants/margin_left = 550
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 550
+theme_override_constants/margin_bottom = 0
+
+[node name="BackBtn" type="Button" parent="MarginContainer/Credits/VBoxContainerCredits/MarginContainer2"]
+layout_mode = 2
+theme = ExtResource("2_50cfq")
+theme_override_font_sizes/font_size = 50
+text = "<"
+
+[node name="Background" type="Node2D" parent="MarginContainer"]
+show_behind_parent = true
+light_mask = 2
+visibility_layer = 2
+z_index = -1
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Background"]
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+texture = ExtResource("4_te7h4")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/Background"]
+modulate = Color(1, 1, 1, 0.286275)
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+texture = ExtResource("4_ehqvf")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/Background"]
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+texture = ExtResource("6_bekgw")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="MenuMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_7u0x2")
+autoplay = true
+bus = &"Music"
+
+[node name="StartSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_d6del")
+bus = &"SFX"
+
+[connection signal="pressed" from="MarginContainer/Title/MenuButtons/MarginContainer/StartBtn" to="." method="_on_start_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/Title/MenuButtons/MarginContainer2/CreditsBtn" to="." method="_on_credits_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/Title/MenuButtons/MarginContainer3/ExitBtn" to="." method="_on_exit_btn_pressed"]
+[connection signal="meta_clicked" from="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer/Credits" to="." method="_on_credits_meta_clicked"]
+[connection signal="meta_clicked" from="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer/Credits2" to="." method="_on_credits_meta_clicked"]
+[connection signal="meta_clicked" from="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer/Credits3" to="." method="_on_credits_meta_clicked"]
+[connection signal="meta_clicked" from="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer/Credits4" to="." method="_on_credits_meta_clicked"]
+[connection signal="meta_clicked" from="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer2/Credits5" to="." method="_on_credits_meta_clicked"]
+[connection signal="meta_clicked" from="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer2/Credits6" to="." method="_on_credits_meta_clicked"]
+[connection signal="meta_clicked" from="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer2/Credits7" to="." method="_on_credits_meta_clicked"]
+[connection signal="meta_clicked" from="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer2/Credits8" to="." method="_on_credits_meta_clicked"]
+[connection signal="meta_clicked" from="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/HBoxContainer/VBoxContainer2/Credits9" to="." method="_on_credits_meta_clicked"]
+[connection signal="pressed" from="MarginContainer/Credits/VBoxContainerCredits/MarginContainer2/BackBtn" to="." method="_on_back_btn_pressed"]

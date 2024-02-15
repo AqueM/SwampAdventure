@@ -1,0 +1,32 @@
+[gd_scene load_steps=9 format=3 uid="uid://cge4pxw21iopg"]
+
+[ext_resource type="PackedScene" uid="uid://bp6rumle0o16c" path="res://main_menu.tscn" id="1_qlo3k"]
+[ext_resource type="PackedScene" uid="uid://chuoj2iq823lr" path="res://player_frog.tscn" id="2_wx5uv"]
+[ext_resource type="PackedScene" uid="uid://csyexbnr7xvq2" path="res://Levels/level.tscn" id="3_7ofyp"]
+[ext_resource type="PackedScene" uid="uid://bjd1up82nlmc0" path="res://Levels/level_visuals.tscn" id="4_glgb2"]
+[ext_resource type="PackedScene" uid="uid://bx7hehr6vivwp" path="res://Levels/level_1.tscn" id="4_vg8ip"]
+[ext_resource type="PackedScene" uid="uid://dsgj75mtflqaq" path="res://Levels/level_2.tscn" id="5_gs7yt"]
+[ext_resource type="PackedScene" uid="uid://bpumjkmhdxs6e" path="res://Levels/level_3.tscn" id="6_umj80"]
+[ext_resource type="PackedScene" uid="uid://cuatsxsgmhvbv" path="res://background_music.tscn" id="8_li2i6"]
+
+[node name="root" type="Node"]
+
+[node name="UI" type="Node" parent="."]
+
+[node name="MainMenu" parent="UI" instance=ExtResource("1_qlo3k")]
+
+[node name="Game" type="Node" parent="."]
+
+[node name="Player_frog" parent="Game" instance=ExtResource("2_wx5uv")]
+
+[node name="Levels" parent="Game" instance=ExtResource("3_7ofyp")]
+
+[node name="Level1" parent="Game/Levels" instance=ExtResource("4_vg8ip")]
+
+[node name="Level2" parent="Game/Levels" instance=ExtResource("5_gs7yt")]
+
+[node name="Level3" parent="Game/Levels" instance=ExtResource("6_umj80")]
+
+[node name="LevelVisuals" parent="Game" instance=ExtResource("4_glgb2")]
+
+[node name="BackgroundMusic" parent="Game" instance=ExtResource("8_li2i6")]

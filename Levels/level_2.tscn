@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsgj75mtflqaq"]
+
+[ext_resource type="PackedScene" uid="uid://bjd1up82nlmc0" path="res://Levels/level_visuals.tscn" id="1_dufyv"]
+[ext_resource type="PackedScene" uid="uid://chuoj2iq823lr" path="res://player_frog.tscn" id="2_ojbkf"]
+[ext_resource type="PackedScene" uid="uid://cuatsxsgmhvbv" path="res://background_music.tscn" id="3_nsrdp"]
+
+[node name="Level2" type="Node2D"]
+
+[node name="LevelVisuals" parent="." instance=ExtResource("1_dufyv")]
+
+[node name="Player_frog" parent="." instance=ExtResource("2_ojbkf")]
+position = Vector2(752, 280)
+
+[node name="BackgroundMusic" parent="." instance=ExtResource("3_nsrdp")]
