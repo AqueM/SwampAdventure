@@ -1,5 +1,5 @@
 extends Node2D
-var first_level = preload("res://Levels/level_1.tscn")
+var level_manager = preload("res://Levels/level_manager.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,8 +15,9 @@ func _process(delta):
 
 func _on_start_btn_pressed():
 	$StartSound.play()
+	$Transitions.transition()
 	await $StartSound.finished
-	get_tree().change_scene_to_packed(first_level)
+
 
 
 func _on_credits_btn_pressed():
@@ -37,3 +38,7 @@ func _on_back_btn_pressed():
 
 func _on_credits_meta_clicked(meta):
 	OS.shell_open(str(meta))
+
+
+func _on_transitions_transitioned():
+	get_tree().change_scene_to_packed(level_manager)

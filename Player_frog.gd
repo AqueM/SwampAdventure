@@ -4,20 +4,26 @@ class_name Player
 @export var move_speed : float = 100.0
 @export var air_jumps_total : int = 0
 var air_jumps_current : int = air_jumps_total
-var can_move : bool = true
+var can_move : bool = false
+var gems_collected = 0
 
-@export var jump_height : float = 100
-@export var jump_time_to_peak : float = 0.5
-@export var jump_time_to_descent : float = 0.30
+var jump_height : float = 100
+var jump_time_to_peak : float = 0.5
+var jump_time_to_descent : float = 0.30
 
 @onready var jump_velocity : float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
 @onready var jump_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
 @onready var fall_gravity : float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-#var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+signal died
+
+func _ready():
+	can_move = true
+	$HUD/UI/DeathScreen.visible = false
+
 
 func _process(delta):
+	#$HUD/UI/Gem_count/HBoxContainer/MarginContainer/GemLabel.text = gems_collected
 	pass
 
 func _physics_process(delta):
@@ -35,7 +41,7 @@ func _physics_process(delta):
 	if grounded:
 		if can_move:
 			move(moving_input)
-		croak(croak_input)
+			croak(croak_input)
 		
 	move_and_slide()
 	update_animations()
@@ -80,13 +86,14 @@ func croak(croak_input):
 		can_move = true
 	
 func die():
-	print("dying")
 	stop_moving()
+	$HUD/UI/Keybinds.hide()
+	$Death.play()
 	$AnimatedSprite2D.play("death")
+	emit_signal("died")
 	await $AnimatedSprite2D.animation_finished
-	$CollisionShape2D.set_deferred("disabled", true)
-	#get_tree().reload_current_scene()	
-	
+	await $Death.finished
+
 func stop_moving():
 	can_move = false
 	velocity.x = 0.0
@@ -103,3 +110,8 @@ func update_animations():
 				$AnimatedSprite2D.play("jump")
 			if velocity.y > 550:
 				$AnimatedSprite2D.play("jump_land")
+
+func _on_gem_collected_gem():
+	gems_collected += 1
+	print(gems_collected)
+	

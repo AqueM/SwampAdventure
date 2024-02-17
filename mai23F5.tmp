@@ -12,6 +12,8 @@
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_v7kcp")
 
+[node name="Transitions" parent="." instance=ExtResource("8_aqwmc")]
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 offset_right = 1280.0
 offset_bottom = 720.0
@@ -164,10 +166,7 @@ Videogame Death Sound from PixaBay,
 [url]https://pixabay.com/sound-effects/videogame-death-sound-43894/[/url]
 
 forest swamp SFX from PixaBay,
-[url]https://pixabay.com/sound-effects/forest-swamp-6751/[/url]
-
-Kyrise's Kyrise's Free 16x16 RPG Icon Pack by Kyrise,
-[url]https://kyrise.itch.io[/url]"
+[url]https://pixabay.com/sound-effects/forest-swamp-6751/[/url]"
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/Credits/VBoxContainerCredits"]
 layout_mode = 2
@@ -223,11 +222,8 @@ bus = &"Music"
 stream = ExtResource("7_d6del")
 bus = &"SFX"
 
-[node name="Transitions" parent="." instance=ExtResource("8_aqwmc")]
-
 [connection signal="pressed" from="MarginContainer/Title/MenuButtons/MarginContainer/StartBtn" to="." method="_on_start_btn_pressed"]
 [connection signal="pressed" from="MarginContainer/Title/MenuButtons/MarginContainer2/CreditsBtn" to="." method="_on_credits_btn_pressed"]
 [connection signal="pressed" from="MarginContainer/Title/MenuButtons/MarginContainer3/ExitBtn" to="." method="_on_exit_btn_pressed"]
 [connection signal="meta_clicked" from="MarginContainer/Credits/VBoxContainerCredits/MarginContainer3/RichTextLabel" to="." method="_on_credits_meta_clicked"]
 [connection signal="pressed" from="MarginContainer/Credits/VBoxContainerCredits/MarginContainer2/BackBtn" to="." method="_on_back_btn_pressed"]
-[connection signal="transitioned" from="Transitions" to="." method="_on_transitions_transitioned"]

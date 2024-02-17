@@ -1,9 +1,14 @@
-[gd_scene load_steps=62 format=3 uid="uid://chuoj2iq823lr"]
+[gd_scene load_steps=69 format=3 uid="uid://chuoj2iq823lr"]
 
 [ext_resource type="Script" path="res://Player_frog.gd" id="1_8f7pw"]
 [ext_resource type="Texture2D" uid="uid://brrfd0lxv5krf" path="res://Assets/Sprites/froglet_frog_green_sheet_all.png" id="2_uua8c"]
 [ext_resource type="AudioStream" uid="uid://c0gpppcb2l1ee" path="res://Assets/cartoon-jump-6462.mp3" id="3_hpv32"]
+[ext_resource type="AudioStream" uid="uid://bph5mrwd6kmx1" path="res://Assets/videogame-death-sound-43894.mp3" id="4_opcnj"]
 [ext_resource type="PackedScene" uid="uid://4nw8u0mxyiqx" path="res://esc_button.tscn" id="4_p8q62"]
+[ext_resource type="PackedScene" uid="uid://cbw44wxurvwvx" path="res://camera_2d.tscn" id="6_evqbw"]
+[ext_resource type="Theme" uid="uid://du4hahjpytee8" path="res://default.tres" id="7_t4yad"]
+[ext_resource type="PackedScene" uid="uid://dggcgy5mox24g" path="res://keybinds.tscn" id="8_pljhd"]
+[ext_resource type="Texture2D" uid="uid://bhxx2hribbew3" path="res://Assets/crystal_01c.png" id="9_2wxng"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hiuob"]
 atlas = ExtResource("2_uua8c")
@@ -304,7 +309,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"death",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -348,7 +353,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_t5l4m")
 }],
-"loop": true,
+"loop": false,
 "name": &"jump",
 "speed": 5.0
 }, {
@@ -437,35 +442,36 @@ animations = [{
 radius = 4.0
 height = 10.0
 
+[sub_resource type="Gradient" id="Gradient_qusgg"]
+offsets = PackedFloat32Array(0.1, 0.6, 0.847751)
+colors = PackedColorArray(0, 0, 0, 1, 0.188205, 0.188205, 0.188205, 0.811795, 1, 1, 1, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_td7tw"]
+gradient = SubResource("Gradient_qusgg")
+
 [node name="Player_frog" type="CharacterBody2D"]
 light_mask = 2
 visibility_layer = 2
 z_index = 1
 z_as_relative = false
-position = Vector2(1, -34)
+position = Vector2(128, 72)
 collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_8f7pw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qhq4j")
-animation = &"death"
-frame = 11
-frame_progress = 1.0
+animation = &"jump_prep"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 3
 position = Vector2(0, 4)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_x413x")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-6, -4)
-zoom = Vector2(4.5, 4.5)
-limit_left = 0
-limit_top = 0
-limit_right = 1000000000
-limit_bottom = 800
-drag_vertical_enabled = true
-editor_draw_limits = true
+[node name="Camera2D" parent="." instance=ExtResource("6_evqbw")]
+limit_bottom = 700
 
 [node name="Jump" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(0, 4)
@@ -473,10 +479,146 @@ stream = ExtResource("3_hpv32")
 volume_db = -10.0
 bus = &"SFX"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_opcnj")
+bus = &"SFX"
 
-[node name="EscButton" parent="CanvasLayer" instance=ExtResource("4_p8q62")]
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 56.0
-offset_bottom = 32.0
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DeathScreen" type="Control" parent="HUD/UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="TextureRect" type="TextureRect" parent="HUD/UI/DeathScreen"]
+layout_mode = 0
+offset_left = 1280.0
+offset_right = 2000.0
+offset_bottom = 1280.0
+rotation = 1.57079
+texture = SubResource("GradientTexture1D_td7tw")
+
+[node name="Title" type="Label" parent="HUD/UI/DeathScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -300.0
+offset_right = 640.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_t4yad")
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 70
+text = "YOU WENT TO SLEEP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Instructions" type="Label" parent="HUD/UI/DeathScreen/Title"]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+theme = ExtResource("7_t4yad")
+theme_type_variation = &"HeaderSmall"
+theme_override_font_sizes/font_size = 30
+text = "Press Jump to Continue"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Keybinds" parent="HUD/UI" instance=ExtResource("8_pljhd")]
+position = Vector2(640, 384)
+
+[node name="A" parent="HUD/UI/Keybinds" index="2"]
+visible = false
+position = Vector2(-64, -24)
+
+[node name="D" parent="HUD/UI/Keybinds" index="3"]
+visible = false
+position = Vector2(64, -24)
+
+[node name="Space" parent="HUD/UI/Keybinds" index="4"]
+visible = false
+position = Vector2(96, -24)
+
+[node name="E" parent="HUD/UI/Keybinds" index="5"]
+visible = false
+position = Vector2(64, -24)
+
+[node name="Gem_count" type="Control" parent="HUD/UI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -127.0
+offset_bottom = 60.0
+grow_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/UI/Gem_count"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/UI/Gem_count/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/UI/Gem_count/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GemLabel" type="Label" parent="HUD/UI/Gem_count/MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="HUD/UI/Gem_count/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="HUD/UI/Gem_count/MarginContainer/HBoxContainer/MarginContainer2"]
+position = Vector2(21, 19)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("9_2wxng")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/UI"]
+layout_mode = 1
+offset_right = 75.0
+offset_bottom = 50.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="EscButton" parent="HUD/UI/MarginContainer" instance=ExtResource("4_p8q62")]
+layout_mode = 2
+
+[editable path="HUD/UI/Keybinds"]

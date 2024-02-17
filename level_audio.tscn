@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dibpgopoplh0m"]
+
+[ext_resource type="PackedScene" uid="uid://cuatsxsgmhvbv" path="res://background_music.tscn" id="1_or2qs"]
+[ext_resource type="AudioStream" uid="uid://dvfbslkg1gn26" path="res://Assets/forest-swamp-6751.mp3" id="2_rclng"]
+
+[node name="Audio" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BackgroundMusic" parent="." instance=ExtResource("1_or2qs")]
+volume_db = -5.0
+
+[node name="SwampSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_rclng")
+autoplay = true
+bus = &"SFX"

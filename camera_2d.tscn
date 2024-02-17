@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cbw44wxurvwvx"]
+
+[node name="Camera2D" type="Camera2D"]
+zoom = Vector2(4.5, 4.5)
+limit_left = 0
+limit_top = 0
+limit_right = 1000000000
+limit_bottom = 800
+drag_vertical_enabled = true
+editor_draw_limits = true

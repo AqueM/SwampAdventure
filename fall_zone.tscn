@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://fall_zone.gd" id="1_8xphg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wbyjs"]
-size = Vector2(650, 42)
+size = Vector2(685, 42)
 
 [node name="FallZone" type="Area2D"]
 collision_mask = 2

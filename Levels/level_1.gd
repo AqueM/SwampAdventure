@@ -1,16 +1,14 @@
 extends Node2D
-var tutorials = "Player_frog/Keybinds"
+
+var tutorials = "../../Player_frog/HUD/UI/Keybinds"
 var isShowingMove : bool = false
 var isShowingCroak : bool = false
 var isShowingJump : bool = false
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_node(tutorials+ "/D").hide()
-	get_node(tutorials+ "/A").hide()
-	get_node(tutorials+ "/E").hide()
-	get_node(tutorials+ "/Space").hide()
-
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -35,6 +33,7 @@ func update_prompt(prompt, state):
 func hide_prompt_on_press(prompt, input):
 	if Input.is_action_just_pressed(str(input)):
 		update_prompt(prompt, false)
+	
 
 func _on_move_body_entered(body):
 	if body is Player && not isShowingMove:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbk1gte42ynd2"]
+[gd_scene load_steps=8 format=3 uid="uid://cbk1gte42ynd2"]
 
 [ext_resource type="Texture2D" uid="uid://cofuotxcne57c" path="res://Assets/stringstar_fields_tileset.png" id="1_8y0cd"]
 
@@ -447,39 +447,70 @@ texture = ExtResource("1_8y0cd")
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_aoh5g")
 
+[sub_resource type="Gradient" id="Gradient_dqc20"]
+offsets = PackedFloat32Array(0, 0.795848)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0.239216, 0.243137, 0.00784314)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ur61l"]
+gradient = SubResource("Gradient_dqc20")
+
+[sub_resource type="Gradient" id="Gradient_bhokm"]
+colors = PackedColorArray(0, 0.239216, 0.243137, 1, 0.670588, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cqvvb"]
+gradient = SubResource("Gradient_bhokm")
+
 [node name="TileMap" type="TileMap"]
 texture_filter = 1
 tile_set = SubResource("TileSet_kst71")
 format = 2
-layer_0/tile_data = PackedInt32Array(1376256, 65537, 9)
+layer_0/tile_data = PackedInt32Array(1376256, 1, 9, 1376257, 65537, 9, 1376258, 131073, 9, 1376259, 196609, 9, 1376260, 262145, 9, 1376261, 327681, 9, 1376262, 393217, 9, 1376263, 458753, 9, 1376264, 524289, 9, 1376265, 589825, 9, 1376266, 655361, 9, 1376267, 720897, 9, 1376268, 786433, 9, 1376269, 851969, 9)
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-z_index = -1
-offset_top = 344.0
-offset_right = 1360.0
-offset_bottom = 552.0
-mouse_filter = 2
-color = Color(0, 0, 0, 0.0392157)
+[node name="Background" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="ColorRect2" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="Background"]
 z_index = -2
+layout_mode = 0
 offset_top = 344.0
 offset_right = 1360.0
 offset_bottom = 552.0
 mouse_filter = 2
 color = Color(0, 0.105882, 0.137255, 1)
 
-[node name="JumpHeight" type="ColorRect" parent="."]
+[node name="JumpHeight" type="ColorRect" parent="Background"]
 visible = false
+layout_mode = 0
 offset_left = 1000.0
 offset_top = 432.0
 offset_right = 1040.0
 offset_bottom = 528.0
 
-[node name="JumpDistance" type="ColorRect" parent="."]
+[node name="JumpDistance" type="ColorRect" parent="Background"]
 visible = false
+layout_mode = 0
 offset_left = 1000.0
 offset_top = 504.0
 offset_right = 1112.0
 offset_bottom = 528.0
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+visible = false
+layout_mode = 0
+offset_left = -8.0
+offset_top = 591.0
+offset_right = 248.0
+offset_bottom = 1961.0
+rotation = -1.57079
+texture = SubResource("GradientTexture1D_ur61l")
+
+[node name="Void" type="TextureRect" parent="."]
+offset_left = 256.0
+offset_top = 592.0
+offset_right = 512.0
+offset_bottom = 808.0
+rotation = -1.57079
+texture = SubResource("GradientTexture1D_cqvvb")

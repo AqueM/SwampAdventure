@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://cinplacj8g5ol"]
+
+[ext_resource type="Script" path="res://transitions.gd" id="1_e73ay"]
+
+[sub_resource type="Animation" id="Animation_f8vgv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dark:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0.105882, 0.137255, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bga82"]
+resource_name = "fade_to_dark"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dark:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0.105882, 0.137255, 0), Color(0, 0.105882, 0.137255, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_logc3"]
+resource_name = "fade_to_dark"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dark:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0.105882, 0.137255, 1), Color(0, 0.105882, 0.137255, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_egve6"]
+_data = {
+"RESET": SubResource("Animation_f8vgv"),
+"dark_to_fade": SubResource("Animation_logc3"),
+"fade_to_dark": SubResource("Animation_bga82")
+}
+
+[node name="Transitions" type="CanvasLayer"]
+script = ExtResource("1_e73ay")
+
+[node name="Dark" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+color = Color(0, 0.105882, 0.137255, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_egve6")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
