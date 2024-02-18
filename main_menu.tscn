@@ -167,7 +167,11 @@ forest swamp SFX from PixaBay,
 [url]https://pixabay.com/sound-effects/forest-swamp-6751/[/url]
 
 Kyrise's Kyrise's Free 16x16 RPG Icon Pack by Kyrise,
-[url]https://kyrise.itch.io[/url]"
+[url]https://kyrise.itch.io[/url]
+
+Croak sound effect from PixaBay,
+[url]https://pixabay.com/sound-effects/croak-sound-effect-41408/[/url]
+"
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/Credits/VBoxContainerCredits"]
 layout_mode = 2
