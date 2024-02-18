@@ -5,7 +5,6 @@ class_name Player
 @export var air_jumps_total : int = 0
 var air_jumps_current : int = air_jumps_total
 var can_move : bool = false
-var gems_collected = 0
 
 var jump_height : float = 100
 var jump_time_to_peak : float = 0.5
@@ -15,15 +14,20 @@ var jump_time_to_descent : float = 0.30
 @onready var jump_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
 @onready var fall_gravity : float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 
+@onready var gem_label = $"HUD/UI/Gem_count/MarginContainer/HBoxContainer/MarginContainer/GemLabel"
+@onready var level_score_label = $"HUD/EndScreen/MarginContainer/VBoxContainer/Level_score/ScoreLabel"
+@onready var total_score_label = $"HUD/EndScreen/MarginContainer/VBoxContainer/Total_score/ScoreLabel"
+@onready var level_manager = $"/root/Level_manager"
+
 signal died
+signal end_level
 
 func _ready():
 	can_move = true
-	$HUD/UI/DeathScreen.visible = false
-
+	$HUD/DeathScreen.visible = false
+	$"HUD/EndScreen".visible = false
 
 func _process(delta):
-	#$HUD/UI/Gem_count/HBoxContainer/MarginContainer/GemLabel.text = gems_collected
 	pass
 
 func _physics_process(delta):
@@ -78,16 +82,16 @@ func move(moving_input):
 		velocity.x = move_toward(velocity.x, 0, move_speed / 10)
 
 func croak(croak_input):
-	#play croak sound
 	if croak_input:
 		stop_moving()
 		$AnimatedSprite2D.play("croak")
+		$Croak.play()
 		await $AnimatedSprite2D.animation_finished
 		can_move = true
 	
 func die():
 	stop_moving()
-	$HUD/UI/Keybinds.hide()
+	$HUD/UI.hide()
 	$Death.play()
 	$AnimatedSprite2D.play("death")
 	emit_signal("died")
@@ -111,7 +115,15 @@ func update_animations():
 			if velocity.y > 550:
 				$AnimatedSprite2D.play("jump_land")
 
-func _on_gem_collected_gem():
-	gems_collected += 1
-	print(gems_collected)
+func _on_level_manager_score_changed(count):
+	gem_label.text = str(count)
+	
+func show_end_screen():
+	level_score_label.text = str(level_manager.gems_collected)
+	total_score_label.text = str(level_manager.score)
+	stop_moving()
+	$"HUD/EndScreen".visible = true
+	end_level.emit()
+	
+	
 	

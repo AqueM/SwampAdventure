@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://chuoj2iq823lr"]
+[gd_scene load_steps=70 format=3 uid="uid://chuoj2iq823lr"]
 
 [ext_resource type="Script" path="res://Player_frog.gd" id="1_8f7pw"]
 [ext_resource type="Texture2D" uid="uid://brrfd0lxv5krf" path="res://Assets/Sprites/froglet_frog_green_sheet_all.png" id="2_uua8c"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://bph5mrwd6kmx1" path="res://Assets/videogame-death-sound-43894.mp3" id="4_opcnj"]
 [ext_resource type="PackedScene" uid="uid://4nw8u0mxyiqx" path="res://esc_button.tscn" id="4_p8q62"]
 [ext_resource type="PackedScene" uid="uid://cbw44wxurvwvx" path="res://camera_2d.tscn" id="6_evqbw"]
+[ext_resource type="AudioStream" uid="uid://485staj42j54" path="res://Assets/croak-sound-effect-41408.mp3" id="6_fe5ec"]
 [ext_resource type="Theme" uid="uid://du4hahjpytee8" path="res://default.tres" id="7_t4yad"]
 [ext_resource type="PackedScene" uid="uid://dggcgy5mox24g" path="res://keybinds.tscn" id="8_pljhd"]
 [ext_resource type="Texture2D" uid="uid://bhxx2hribbew3" path="res://Assets/crystal_01c.png" id="9_2wxng"]
@@ -483,19 +484,15 @@ bus = &"SFX"
 stream = ExtResource("4_opcnj")
 bus = &"SFX"
 
+[node name="Croak" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_fe5ec")
+bus = &"SFX"
+
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="UI" type="Control" parent="HUD"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="DeathScreen" type="Control" parent="HUD/UI"]
+[node name="DeathScreen" type="Control" parent="HUD"]
 visible = false
-layout_mode = 1
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -503,7 +500,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="TextureRect" type="TextureRect" parent="HUD/UI/DeathScreen"]
+[node name="TextureRect" type="TextureRect" parent="HUD/DeathScreen"]
 layout_mode = 0
 offset_left = 1280.0
 offset_right = 2000.0
@@ -511,7 +508,7 @@ offset_bottom = 1280.0
 rotation = 1.57079
 texture = SubResource("GradientTexture1D_td7tw")
 
-[node name="Title" type="Label" parent="HUD/UI/DeathScreen"]
+[node name="Title" type="Label" parent="HUD/DeathScreen"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -531,7 +528,7 @@ text = "YOU WENT TO SLEEP"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Instructions" type="Label" parent="HUD/UI/DeathScreen/Title"]
+[node name="Instructions" type="Label" parent="HUD/DeathScreen/Title"]
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
@@ -542,24 +539,39 @@ text = "Press Jump to Continue"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="EscapeBtn" type="MarginContainer" parent="HUD"]
+offset_right = 75.0
+offset_bottom = 50.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="EscButton" parent="HUD/EscapeBtn" instance=ExtResource("4_p8q62")]
+layout_mode = 2
+
+[node name="UI" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Keybinds" parent="HUD/UI" instance=ExtResource("8_pljhd")]
 position = Vector2(640, 384)
 
-[node name="A" parent="HUD/UI/Keybinds" index="2"]
+[node name="move_left" parent="HUD/UI/Keybinds" index="2"]
 visible = false
-position = Vector2(-64, -24)
 
-[node name="D" parent="HUD/UI/Keybinds" index="3"]
+[node name="move_right" parent="HUD/UI/Keybinds" index="3"]
 visible = false
-position = Vector2(64, -24)
 
-[node name="Space" parent="HUD/UI/Keybinds" index="4"]
+[node name="jump" parent="HUD/UI/Keybinds" index="4"]
 visible = false
-position = Vector2(96, -24)
 
-[node name="E" parent="HUD/UI/Keybinds" index="5"]
+[node name="croak" parent="HUD/UI/Keybinds" index="5"]
 visible = false
-position = Vector2(64, -24)
 
 [node name="Gem_count" type="Control" parent="HUD/UI"]
 layout_mode = 1
@@ -575,12 +587,18 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -83.0
+offset_bottom = 49.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
+
+[node name="ColorRect" type="ColorRect" parent="HUD/UI/Gem_count/MarginContainer"]
+layout_mode = 2
+color = Color(0, 0.105882, 0.137255, 0.278431)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/UI/Gem_count/MarginContainer"]
 layout_mode = 2
@@ -591,6 +609,7 @@ size_flags_horizontal = 3
 
 [node name="GemLabel" type="Label" parent="HUD/UI/Gem_count/MarginContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 50
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -604,21 +623,102 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Sprite2D" type="Sprite2D" parent="HUD/UI/Gem_count/MarginContainer/HBoxContainer/MarginContainer2"]
-position = Vector2(21, 19)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("9_2wxng")
-
-[node name="MarginContainer" type="MarginContainer" parent="HUD/UI"]
-layout_mode = 1
-offset_right = 75.0
-offset_bottom = 50.0
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="EscButton" parent="HUD/UI/MarginContainer" instance=ExtResource("4_p8q62")]
+[node name="TextureRect" type="TextureRect" parent="HUD/UI/Gem_count/MarginContainer/HBoxContainer/MarginContainer2"]
 layout_mode = 2
+texture = ExtResource("9_2wxng")
+expand_mode = 3
+
+[node name="EndScreen" type="Control" parent="HUD"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="HUD/EndScreen"]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0.105882, 0.137255, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/EndScreen"]
+layout_mode = 2
+offset_left = 39.0
+offset_top = 124.5
+offset_right = 1241.0
+offset_bottom = 595.5
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 200
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/EndScreen/MarginContainer"]
+layout_mode = 2
+
+[node name="Title2" type="Label" parent="HUD/EndScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("7_t4yad")
+theme_type_variation = &"HeaderLarge"
+theme_override_font_sizes/font_size = 70
+text = "YOU FINISHED THE LEVEL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Level_score" type="HBoxContainer" parent="HUD/EndScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="Subheader" type="Label" parent="HUD/EndScreen/MarginContainer/VBoxContainer/Level_score"]
+layout_mode = 2
+theme = ExtResource("7_t4yad")
+theme_type_variation = &"HeaderSmall"
+theme_override_font_sizes/font_size = 30
+text = "You collected"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="HUD/EndScreen/MarginContainer/VBoxContainer/Level_score"]
+layout_mode = 2
+theme = ExtResource("7_t4yad")
+theme_type_variation = &"HeaderSmall"
+theme_override_font_sizes/font_size = 30
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Subheader2" type="Label" parent="HUD/EndScreen/MarginContainer/VBoxContainer/Level_score"]
+layout_mode = 2
+theme = ExtResource("7_t4yad")
+theme_type_variation = &"HeaderSmall"
+theme_override_font_sizes/font_size = 30
+text = "gems in this level"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Total_score" type="HBoxContainer" parent="HUD/EndScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="Subheader" type="Label" parent="HUD/EndScreen/MarginContainer/VBoxContainer/Total_score"]
+layout_mode = 2
+theme = ExtResource("7_t4yad")
+theme_type_variation = &"HeaderSmall"
+theme_override_font_sizes/font_size = 30
+text = "Your total score is"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="HUD/EndScreen/MarginContainer/VBoxContainer/Total_score"]
+layout_mode = 2
+theme = ExtResource("7_t4yad")
+theme_type_variation = &"HeaderSmall"
+theme_override_font_sizes/font_size = 30
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [editable path="HUD/UI/Keybinds"]

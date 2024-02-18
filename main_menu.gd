@@ -5,6 +5,10 @@ var level_manager = preload("res://Levels/level_manager.tscn")
 func _ready():
 	$MarginContainer/Credits.visible = false
 	$MarginContainer/Title.visible = true
+	Global.tutorial_move_left = true
+	Global.tutorial_move_right = true
+	Global.tutorial_jump = true
+	Global.tutorial_croak = true
 	pass # Replace with function body.
 
 

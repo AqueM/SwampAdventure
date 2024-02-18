@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://csyexbnr7xvq2"]
+[gd_scene load_steps=4 format=3 uid="uid://csyexbnr7xvq2"]
 
 [ext_resource type="Script" path="res://Levels/level_manager.gd" id="1_u58oo"]
 [ext_resource type="PackedScene" uid="uid://cinplacj8g5ol" path="res://transitions.tscn" id="2_unbuo"]
 [ext_resource type="PackedScene" uid="uid://chuoj2iq823lr" path="res://player_frog.tscn" id="3_v665t"]
-[ext_resource type="PackedScene" uid="uid://dbtja0rvksyku" path="res://gem.tscn" id="4_so5yy"]
 
 [node name="Level_manager" type="Node2D"]
 script = ExtResource("1_u58oo")
@@ -19,8 +18,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Gem" parent="." instance=ExtResource("4_so5yy")]
-
+[connection signal="score_changed" from="." to="Player_frog" method="_on_level_manager_score_changed"]
 [connection signal="transitioned" from="Transitions" to="." method="_on_transitions_transitioned"]
 [connection signal="died" from="Player_frog" to="." method="_on_player_frog_died"]
-[connection signal="collected_gem" from="Gem" to="Player_frog" method="_on_gem_collected_gem"]
+[connection signal="end_level" from="Player_frog" to="." method="_on_player_frog_end_level"]

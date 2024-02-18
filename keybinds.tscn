@@ -137,35 +137,35 @@ animations = [{
 
 [node name="Keybinds" type="Node2D"]
 
-[node name="W" type="AnimatedSprite2D" parent="."]
+[node name="move_up" type="AnimatedSprite2D" parent="."]
 visible = false
 position = Vector2(16, -64)
 sprite_frames = SubResource("SpriteFrames_yefco")
 frame = 1
 frame_progress = 0.598404
 
-[node name="S" type="AnimatedSprite2D" parent="."]
+[node name="move_down" type="AnimatedSprite2D" parent="."]
 visible = false
 position = Vector2(72, -64)
 sprite_frames = SubResource("SpriteFrames_3252h")
 frame_progress = 0.707471
 
-[node name="A" type="AnimatedSprite2D" parent="."]
+[node name="move_left" type="AnimatedSprite2D" parent="."]
 position = Vector2(-56, 8)
 sprite_frames = SubResource("SpriteFrames_r33jf")
 frame = 1
 frame_progress = 0.0202845
 
-[node name="D" type="AnimatedSprite2D" parent="."]
+[node name="move_right" type="AnimatedSprite2D" parent="."]
 position = Vector2(48, 8)
 sprite_frames = SubResource("SpriteFrames_xuqqw")
 
-[node name="Space" type="AnimatedSprite2D" parent="."]
+[node name="jump" type="AnimatedSprite2D" parent="."]
 position = Vector2(32, 8)
 sprite_frames = SubResource("SpriteFrames_ga1ys")
 frame_progress = 0.0409783
 
-[node name="E" type="AnimatedSprite2D" parent="."]
+[node name="croak" type="AnimatedSprite2D" parent="."]
 position = Vector2(120, 8)
 sprite_frames = SubResource("SpriteFrames_i7ul7")
 frame = 1
