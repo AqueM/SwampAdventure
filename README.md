@@ -1,5 +1,5 @@
 # Swamp Adventure
-This is the bare-bones beggining of a platformer game. It includes camera and movement controls, main menu and in-game UI, level/scene handler and score tracking.
+This is the bare-bones beginning of a platformer game. It includes camera and movement controls, main menu and in-game UI, level/scene handler and score tracking.
 It was created to learn gamedev and the engine itself.
 
 ## Credits
